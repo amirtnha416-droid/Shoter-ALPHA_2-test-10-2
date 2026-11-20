@@ -2,7 +2,7 @@
   "name": "alpha-x",
   "version": "1.0.0",
   "private": true,
-  "description": "ALPHA-X browser game packaged for Windows and Android",
+  "description": "ALPHA-X game packaged for Windows and Android",
   "main": "electron/main.cjs",
   "scripts": {
     "prepare:game": "node scripts/prepare-game.mjs",
@@ -13,10 +13,8 @@
     "@capacitor/android": "6.2.1",
     "@capacitor/cli": "6.2.1",
     "@capacitor/core": "6.2.1",
-    "@dimforge/rapier3d-compat": "0.14.0",
     "electron": "33.2.1",
-    "electron-builder": "25.1.8",
-    "three": "0.128.0"
+    "electron-builder": "25.1.8"
   },
   "build": {
     "appId": "com.alphax.desktop",
@@ -31,8 +29,18 @@
     ],
     "win": {
       "target": [
-        { "target": "nsis", "arch": ["x64"] },
-        { "target": "portable", "arch": ["x64"] }
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
       ]
     },
     "nsis": {

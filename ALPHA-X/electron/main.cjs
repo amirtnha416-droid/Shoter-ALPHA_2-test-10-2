@@ -23,7 +23,6 @@ const contentTypes = {
 };
 
 let server;
-let serverPort;
 
 function startLocalServer() {
   server = http.createServer(async (req, res) => {
@@ -66,14 +65,12 @@ function startLocalServer() {
 
   return new Promise((resolve, reject) => {
     server.once("error", reject);
-    server.listen(0, "127.0.0.1", () => {
-      serverPort = server.address().port;
-      resolve();
-    });
+    server.listen(0, "127.0.0.1", resolve);
   });
 }
 
 async function createWindow() {
+  const address = server.address();
   const win = new BrowserWindow({
     width: 1440,
     height: 900,
@@ -90,17 +87,14 @@ async function createWindow() {
   });
 
   win.webContents.setWindowOpenHandler(() => ({ action: "deny" }));
-  await win.loadURL(`http://127.0.0.1:${serverPort}/`);
+  await win.loadURL(`http://127.0.0.1:${address.port}/`);
 }
 
 app.whenReady().then(async () => {
   await startLocalServer();
   await createWindow();
-
   app.on("activate", async () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      await createWindow();
-    }
+    if (BrowserWindow.getAllWindows().length === 0) await createWindow();
   });
 }).catch((error) => {
   console.error("ALPHA-X startup failed:", error);
