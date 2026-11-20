@@ -1,0 +1,6 @@
+{
+  "appId": "com.alphax.mobile",
+  "appName": "ALPHA-X",
+  "webDir": "game",
+  "bundledWebRuntime": false
+}
