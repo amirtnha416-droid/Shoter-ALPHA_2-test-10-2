@@ -1,6 +1,6 @@
 # ALPHA-X application project
 
-The original game is stored unchanged at `game/index.html`. It includes the Three.js r128 renderer and the Rapier physics module inline, so the build does not need to fetch those libraries from a CDN. Google Fonts are optional online fonts and fall back to system fonts when unavailable.
+The original game is stored at `game/index.html`. Three.js r128 and the Rapier JavaScript glue are embedded in the HTML. The preparation step copies the matching Rapier WASM binary into `game/vendor/rapier/` and points the loader to that local file, so game physics does not depend on a CDN. Google Fonts remain an optional online enhancement.
 
 ## Build
 
